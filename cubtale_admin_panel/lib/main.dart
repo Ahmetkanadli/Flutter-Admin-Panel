@@ -2,6 +2,8 @@
 
 import 'dart:async';
 
+import 'package:cubtale_admin_panel/core/Theme/bloc/theme_bloc.dart';
+import 'package:cubtale_admin_panel/core/Theme/theme_state.dart';
 import 'package:cubtale_admin_panel/view/home/home_page.dart';
 import 'package:cubtale_admin_panel/view/home/search_view/search_bloc/search_bloc.dart';
 import 'package:cubtale_admin_panel/view/home/widget/bloc/dropDown_bloc.dart';
@@ -18,6 +20,7 @@ Future<void> setupHive() async {
 
    await Hive.initFlutter();
    await Hive.openBox<Map<String,dynamic>>("user_information");
+   await Hive.openBox<bool>("isDark");
 }
 
 
@@ -28,6 +31,9 @@ void startScheduledTask() {
   Timer.periodic(cleaningInterval, (timer) {
     var box = Hive.box<Map<String,dynamic>>('user_information');
     box.clear();
+
+    var isDark = Hive.box<bool>('isDark');
+    isDark.clear();
   });
 }
 
@@ -47,17 +53,17 @@ class MyApp extends StatelessWidget {
           BlocProvider(create: (context) => LoginBloc()),
           BlocProvider(create: (context) => SearchBloc()),
           BlocProvider(create: (context) => DropDownBloc()),
+          BlocProvider(create: (context) => ThemeBloc())
         ],
-        child: ScreenUtilInit(
-          builder: (context, child) => MaterialApp(
-            debugShowCheckedModeBanner: false,
-            theme: ThemeData(
-                appBarTheme: const AppBarTheme(
-                    elevation: 0, backgroundColor: Colors.white,
-                ),
-                useMaterial3: true),
-            home: WidgetTree(),
-          ),
-        ));
+        child: BlocBuilder<ThemeBloc, ThemeMode>(
+          builder: (context, state) {
+            return MaterialApp(
+              debugShowCheckedModeBanner: false,
+              theme: lightTheme,
+              themeMode: state,
+              home: WidgetTree(),
+            );
+          },
+        ),);
   }
 }

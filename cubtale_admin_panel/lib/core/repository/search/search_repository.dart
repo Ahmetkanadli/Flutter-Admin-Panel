@@ -14,7 +14,7 @@ import 'package:http/http.dart' as http;
 class Search {
   
   // Kullanıcı verilerini dahli depolamada tutmak için
-  final _userInformation = Hive.box<Map<String,String>>("user_information");
+  final _userInformation = Hive.box<Map<String, dynamic>>("user_information");
 
   @override
   Future<List<SearchUsers>?> userSearch({
