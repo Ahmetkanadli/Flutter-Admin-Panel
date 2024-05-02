@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:cubtale_admin_panel/core/failure/login/login_repository_failure.dart';
-import 'package:cubtale_admin_panel/core/model/auth%20model.dart';
+import 'package:cubtale_admin_panel/core/model/search_model.dart';
 import 'package:cubtale_admin_panel/view/home/search_view/search_bloc/search_bloc.dart';
 import 'package:cubtale_admin_panel/view/home/search_view/search_bloc/search_events.dart';
 import 'package:dartz/dartz.dart';
@@ -17,7 +17,7 @@ class Search {
   final _userInformation = Hive.box<Map<String,String>>("user_information");
 
   @override
-  Future<List<Users>?> userSearch({
+  Future<List<SearchUsers>?> userSearch({
     required String userInfo,
     required String searchType,
     required BuildContext context}) async {
@@ -36,7 +36,7 @@ class Search {
       );
 
       //final result = decodeResponseBody(response.bodyBytes);
-      final result = User.fromJson(jsonDecode(response.body));
+      final result = SearchUser.fromJson(jsonDecode(response.body));
       final generalFailure = _handleGeneralErrors(response.statusCode, result.toJson());
 
       if (generalFailure != null){
@@ -51,7 +51,7 @@ class Search {
         context.read<SearchBloc>().add(ResultEvent(result.users!));
         context.read<SearchBloc>().add(ResultEvent(result.users!));
 
-        return result.users;;
+        return result.users;
       }
     } on SocketException catch (_) {
       print(_.message);

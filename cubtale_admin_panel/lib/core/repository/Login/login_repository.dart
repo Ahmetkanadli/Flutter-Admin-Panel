@@ -11,7 +11,7 @@ import 'package:http/http.dart' as http;
 class LoginRepository implements ISearchRepository {
   
   // Kullanıcı verilerini dahli depolamada tutmak için
-  final _userInformation = Hive.box<Map<String,String>>("user_information");
+  final _userInformation = Hive.box<Map<String,dynamic>>("user_information");
 
   @override
   Future<Either<LoginRepositoryFailure, bool>> login({
@@ -43,8 +43,8 @@ class LoginRepository implements ISearchRepository {
         return left(LoginRepositoryNotFoundFailure());
       }
       else {
-        _userInformation.put(0, jsonData);
-        print(_userInformation.get(0));
+        _userInformation.put(0, result);
+        print("USer box : ${_userInformation.get(0)}");
         return right(true);
       }
     } on SocketException catch (_) {

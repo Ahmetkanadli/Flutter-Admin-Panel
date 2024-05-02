@@ -21,38 +21,34 @@ class User{
 class Users{
 
   final String acc_id ;
-  final String acc_mail;
+  final String acc_token;
   final String acc_name;
   final String acc_surname;
-  final bool acc_verified;
-  final String acc_creation_date;
+  final bool acc_role;
 
   Users({
 
     required this.acc_id,
-    required this.acc_mail,
+    required this.acc_token,
     required this.acc_name,
     required this.acc_surname,
-    required this.acc_verified,
-    required this.acc_creation_date
+    required this.acc_role,
   });
 
 
   factory Users.fromJson(Map<String, dynamic> json) => Users(
       acc_id : json["acc_id"],
-      acc_mail: json["acc_mail"],
+      acc_token: json["acc_mail"],
       acc_name : json["acc_name"],
       acc_surname : json["acc_surname"],
-      acc_verified : json["acc_verified"],
-      acc_creation_date : json["acc_creation_date"]
+      acc_role : json["acc_verified"],
   );
 
   Map<String, dynamic> toJson() => {
     "acc_id" : acc_id,
-    "acc_mail" : acc_mail,
+    "acc_mail" : acc_token,
     "acc_name" : acc_name,
     "acc_surname" : acc_surname,
-    "acc_verified" : acc_verified,
-    "acc_creation_date" : acc_creation_date
+    "acc_verified" : acc_role,
   };
 }

@@ -1,6 +1,7 @@
 
 
-import 'package:cubtale_admin_panel/core/model/auth%20model.dart';
+
+import 'package:cubtale_admin_panel/core/model/search_model.dart';
 
 abstract class SearchEvent{
   const SearchEvent();
@@ -12,6 +13,6 @@ class EmailEvent extends SearchEvent{
 }
 
 class ResultEvent extends SearchEvent{
-  final List<Users>? result;
+  final List<SearchUsers>? result;
   const ResultEvent(this.result);
 }

@@ -1,6 +1,7 @@
 import 'package:cubtale_admin_panel/core/failure/login/login_repository_failure.dart';
 import 'package:cubtale_admin_panel/core/repository/Login/login_repository.dart';
 import 'package:cubtale_admin_panel/view/home/home_page.dart';
+import 'package:cubtale_admin_panel/view/login/Error/error_view.dart';
 import 'package:cubtale_admin_panel/view/login/bloc/login_bloc.dart';
 import 'package:cubtale_admin_panel/view/login/bloc/login_events.dart';
 import 'package:cubtale_admin_panel/view/login/bloc/login_states.dart';
@@ -142,11 +143,11 @@ class LoginScreen extends StatelessWidget {
                                     Future<Either<LoginRepositoryFailure, bool>> isLogin = LoginRepository().login(email: state.email, password: state.password);
                                     isLogin.then((value) {
                                       if (value.isLeft()) {
-
-                                        /// TODO Hata Mesajı Döndürlecek
+                                        showDialog(context: context, builder: (BuildContext context){
+                                            return ErrorView(errorMessage: "HATA");});
                                       }
                                       else{
-                                        Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeScreen()));
+                                        return Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeScreen()));
                                       }
                                     }
                                     );
