@@ -5,9 +5,9 @@ import 'package:google_fonts/google_fonts.dart';
 
 class ErrorView extends StatefulWidget {
   const ErrorView({
-    Key? key,
+    super.key,
     required this.errorMessage,
-  }) : super(key: key);
+  });
 
   final String errorMessage;
 
@@ -17,28 +17,9 @@ class ErrorView extends StatefulWidget {
 
 class _ErrorViewState extends State<ErrorView>
     with SingleTickerProviderStateMixin {
-  late final AnimationController _controller;
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    _controller = AnimationController(
-      duration: const Duration(milliseconds: 2000),
-      vsync: this,
-    );
-    _controller.forward();
-  }
-
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
     return BlocBuilder<ThemeBloc, ThemeMode>(builder: (context, state) {
       final themeBloc = context.read<ThemeBloc>().state;
       return Center(
@@ -47,11 +28,11 @@ class _ErrorViewState extends State<ErrorView>
           height: 300,
           child: Card(
             color:
-                themeBloc == ThemeMode.light ? Colors.white : Color(0xff204c5c),
+                themeBloc == ThemeMode.light ? Colors.white : const Color(0xff204c5c),
             elevation: 15,
             child: Column(
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 SizedBox(
@@ -68,8 +49,8 @@ class _ErrorViewState extends State<ErrorView>
                           fontWeight: FontWeight.bold,
                           fontSize: 18,
                           color: themeBloc == ThemeMode.light
-                              ? Color(0xff204c5c)
-                              : Color(0xffb8e6db))),
+                              ? const Color(0xff204c5c)
+                              : const Color(0xffb8e6db))),
                 ),
                 const SizedBox(
                   height: 5,
@@ -81,8 +62,8 @@ class _ErrorViewState extends State<ErrorView>
                           fontWeight: FontWeight.bold,
                           fontSize: 18,
                           color: themeBloc == ThemeMode.light
-                              ? Color(0xff204c5c)
-                              : Color(0xffb8e6db))),
+                              ? const Color(0xff204c5c)
+                              : const Color(0xffb8e6db))),
                 ),
                 const SizedBox(
                   height: 5,
@@ -94,8 +75,8 @@ class _ErrorViewState extends State<ErrorView>
                           fontWeight: FontWeight.bold,
                           fontSize: 18,
                           color: themeBloc == ThemeMode.light
-                              ? Color(0xff204c5c)
-                              : Color(0xffb8e6db))),
+                              ? const Color(0xff204c5c)
+                              : const Color(0xffb8e6db))),
                 ),
                 const SizedBox(
                   height: 30,

@@ -44,7 +44,7 @@ class Search {
         return null;
       }
       else if(result.toString() == "{users: []}"){
-        LoginRepositoryNotFoundFailure();
+        const LoginRepositoryNotFoundFailure();
         return null;
       }
       else {
@@ -55,7 +55,7 @@ class Search {
       }
     } on SocketException catch (_) {
       print(_.message);
-      LoginRepositoryConnectionFailure();
+      const LoginRepositoryConnectionFailure();
       return null;
     } catch (e) {
       LoginRepositoryUnknownFailure(e.toString());

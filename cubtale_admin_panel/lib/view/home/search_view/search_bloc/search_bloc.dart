@@ -18,12 +18,10 @@ class SearchBloc extends Bloc<SearchEvent, SearchState>{
   }
 
   void _emailEvent(EmailEvent event, Emitter<SearchState> emit){
-    print(state.email);
     emit(state.copyWith(email: event.email));
   }
 
   void _resultEvent(ResultEvent event, Emitter<SearchState> emit){
-    print("resultEvent = ${state.result}");
     emit(state.copyWith(result: event.result));
   }
 

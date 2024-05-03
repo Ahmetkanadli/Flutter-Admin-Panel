@@ -4,7 +4,6 @@ import 'package:cubtale_admin_panel/view/home/widget/appBar_widget.dart';
 import 'package:cubtale_admin_panel/view/home/widget/bloc/dropDown_bloc.dart';
 import 'package:cubtale_admin_panel/view/home/widget/bloc/dropDown_states.dart';
 import 'package:cubtale_admin_panel/view/home/widget/today_new_user.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -19,11 +18,11 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
+
     return BlocBuilder<ThemeBloc, ThemeMode>(builder: (context, state) {
       return Scaffold(
           backgroundColor:
-              state == ThemeMode.light ? Colors.white : Color(0xff101c34),
+              state == ThemeMode.light ? Colors.white : const Color(0xff101c34),
           body: Stack(
             children: [
               SingleChildScrollView(

@@ -6,16 +6,14 @@ import 'package:cubtale_admin_panel/view/home/widget/bloc/dropDown_states.dart';
 import 'package:cubtale_admin_panel/view/login/bloc/login_bloc.dart';
 import 'package:cubtale_admin_panel/view/login/bloc/login_states.dart';
 import 'package:cubtale_admin_panel/view/login/login_screen.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive/hive.dart';
 
 Widget HomeAppBarWidget(BuildContext context) {
   double width = MediaQuery.of(context).size.width;
-  print(width);
+
   return BlocBuilder<DropDownBloc, DropDownState>(builder: (context, state) {
     final themeBloc = context.read<ThemeBloc>().state;
     return BlocBuilder<DropDownBloc, DropDownState>(builder: (context, state) {
@@ -29,8 +27,8 @@ Widget HomeAppBarWidget(BuildContext context) {
                 height: 100,
                 decoration: BoxDecoration(
                   color: themeBloc == ThemeMode.light
-                      ? Color(0xffb8e6db)
-                      : Color(0xff204c5c),
+                      ? const Color(0xffb8e6db)
+                      : const Color(0xff204c5c),
                 ),
               ),
               const Spacer(),
@@ -39,8 +37,8 @@ Widget HomeAppBarWidget(BuildContext context) {
                 height: state.isPressed ? 250 : 10,
                 decoration: BoxDecoration(
                   color: themeBloc == ThemeMode.light
-                      ? Color(0xffb8e6db)
-                      : Color(0xff204c5c),
+                      ? const Color(0xffb8e6db)
+                      : const Color(0xff204c5c),
                 ),
               ),
             ],
@@ -54,8 +52,8 @@ Widget HomeAppBarWidget(BuildContext context) {
                 toolbarHeight: 80,
                 elevation: 0,
                 backgroundColor: themeBloc == ThemeMode.light
-                    ? Color(0xffb8e6db)
-                    : Color(0xff204c5c),
+                    ? const Color(0xffb8e6db)
+                    : const Color(0xff204c5c),
                 actions: [
                   Row(
                     children: [
@@ -92,7 +90,7 @@ Widget HomeAppBarWidget(BuildContext context) {
                               ))),
                     ],
                   ),
-                  Spacer(),
+                  const Spacer(),
                   Row(
                     children: [
                       TextButton(
@@ -184,14 +182,15 @@ Widget HomeAppBarWidget(BuildContext context) {
                       child: GestureDetector(
                           onTap: () {
                             //DropDownMenu(context);
-                            if (state.isPressed)
+                            if (state.isPressed) {
                               context
                                   .read<DropDownBloc>()
                                   .add(IsPressedEvent(false));
-                            else
+                            } else {
                               context
                                   .read<DropDownBloc>()
                                   .add(IsPressedEvent(true));
+                            }
                           },
                           child: Image.asset("assets/menu_burger.png"))),
                   const SizedBox(
@@ -221,7 +220,7 @@ Widget HomeAppBarWidget(BuildContext context) {
                       ),
                       color: themeBloc == ThemeMode.light
                           ? Colors.white
-                          : Color(0xff101c34),
+                          : const Color(0xff101c34),
                     ),
                     child: BlocBuilder<DropDownBloc, DropDownState>(
                       builder: (context, state) {
@@ -250,8 +249,8 @@ Widget DropDownMenu(BuildContext context) {
   double width = MediaQuery.of(context).size.width;
   double height = MediaQuery.of(context).size.height;
 
-  var _user = Hive.box<Map<String, dynamic>>("user_information");
-  List userList = _user.get(0)!.values.toList();
+  var user = Hive.box<Map<String, dynamic>>("user_information");
+  List userList = user.get(0)!.values.toList();
 
   return BlocBuilder<ThemeBloc, ThemeMode>(builder: (context, state) {
     final themeBloc = context.read<ThemeBloc>().state;
@@ -268,9 +267,9 @@ Widget DropDownMenu(BuildContext context) {
                 height: height / 2.9,
                 decoration: BoxDecoration(
                     color: themeBloc == ThemeMode.light
-                        ? Color(0xffb8e6db)
-                        : Color(0xff204c5c),
-                    borderRadius: BorderRadius.only(
+                        ? const Color(0xffb8e6db)
+                        : const Color(0xff204c5c),
+                    borderRadius: const BorderRadius.only(
                         bottomLeft: Radius.circular(15),
                         bottomRight: Radius.circular(15))),
                 child: Column(
@@ -281,7 +280,7 @@ Widget DropDownMenu(BuildContext context) {
                       color: Colors.transparent,
                       child: Image.asset("assets/profile_image_light.png"),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Text(
@@ -320,7 +319,7 @@ Widget DropDownMenu(BuildContext context) {
                                   MaterialPageRoute(
                                       builder: (context) =>
                                           const LoginScreen()));
-                              _user.clear();
+                              user.clear();
                             },
                             style: ButtonStyle(
                                 backgroundColor:

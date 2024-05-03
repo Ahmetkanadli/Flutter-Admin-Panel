@@ -34,23 +34,21 @@ class LoginRepository implements ISearchRepository {
       );
 
       final result = decodeResponseBody(response.bodyBytes);
-      print(result);
       final generalFailure = _handleGeneralErrors(response.statusCode, result);
 
       if (generalFailure != null) return left(generalFailure);
       if(result.toString() == "{error_msg: Token verification failed, error_code: 1099}"){
-        return left(LoginRepositoryNotFoundFailure());
+        return left(const LoginRepositoryNotFoundFailure());
       }
       else {
         _userInformation.put(0, result);
-        print("USer box : ${_userInformation.get(0)}");
+
         return right(true);
       }
     } on SocketException catch (_) {
       print(_.message);
       return left(const LoginRepositoryConnectionFailure());
     } catch (e) {
-      print(e.toString());
       return left(LoginRepositoryUnknownFailure(e.toString()));
     }
   }

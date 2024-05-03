@@ -32,7 +32,7 @@ class LoginScreen extends StatelessWidget {
         builder: (context, state) {
           return Scaffold(
             backgroundColor:
-                themeBloc == ThemeMode.light ? Colors.white : Color(0xff101c34),
+                themeBloc == ThemeMode.light ? Colors.white : const Color(0xff101c34),
             body: Stack(
               children: [
                 AppBarWidget(context),
@@ -47,8 +47,8 @@ class LoginScreen extends StatelessWidget {
                         height: height < 1000 ? 500 : 300,
                         decoration: BoxDecoration(
                             color: themeBloc == ThemeMode.light
-                                ? Color(0xffd7f1ed)
-                                : Color(0xff182c3c),
+                                ? const Color(0xffd7f1ed)
+                                : const Color(0xff182c3c),
                             borderRadius:
                                 const BorderRadius.all(Radius.circular(30))),
                         child: AspectRatio(
@@ -87,14 +87,14 @@ class LoginScreen extends StatelessWidget {
                                       decoration: InputDecoration(
                                         filled: true,
                                         fillColor: themeBloc == ThemeMode.light
-                                            ? Color(0xffb8e6db)
-                                            : Color(0xff204c5c),
+                                            ? const Color(0xffb8e6db)
+                                            : const Color(0xff204c5c),
                                         border: OutlineInputBorder(
                                             borderSide: BorderSide(
                                               color:
                                                   themeBloc == ThemeMode.light
-                                                      ? Color(0xffb8e6db)
-                                                      : Color(0xff204c5c),
+                                                      ? const Color(0xffb8e6db)
+                                                      : const Color(0xff204c5c),
                                             ),
                                             borderRadius:
                                                 const BorderRadius.all(
@@ -103,8 +103,8 @@ class LoginScreen extends StatelessWidget {
                                             borderSide: BorderSide(
                                               color:
                                                   themeBloc == ThemeMode.light
-                                                      ? Color(0xffb8e6db)
-                                                      : Color(0xff204c5c),
+                                                      ? const Color(0xffb8e6db)
+                                                      : const Color(0xff204c5c),
                                             ),
                                             borderRadius:
                                                 const BorderRadius.all(
@@ -142,14 +142,14 @@ class LoginScreen extends StatelessWidget {
                                       decoration: InputDecoration(
                                         filled: true,
                                         fillColor: themeBloc == ThemeMode.light
-                                            ? Color(0xffb8e6db)
-                                            : Color(0xff204c5c),
+                                            ? const Color(0xffb8e6db)
+                                            : const Color(0xff204c5c),
                                         border: OutlineInputBorder(
                                             borderSide: BorderSide(
                                               color:
                                                   themeBloc == ThemeMode.light
-                                                      ? Color(0xffb8e6db)
-                                                      : Color(0xff204c5c),
+                                                      ? const Color(0xffb8e6db)
+                                                      : const Color(0xff204c5c),
                                             ),
                                             borderRadius:
                                                 const BorderRadius.all(
@@ -158,8 +158,8 @@ class LoginScreen extends StatelessWidget {
                                             borderSide: BorderSide(
                                               color:
                                                   themeBloc == ThemeMode.light
-                                                      ? Color(0xffb8e6db)
-                                                      : Color(0xff204c5c),
+                                                      ? const Color(0xffb8e6db)
+                                                      : const Color(0xff204c5c),
                                             ),
                                             borderRadius:
                                                 const BorderRadius.all(
@@ -191,7 +191,7 @@ class LoginScreen extends StatelessWidget {
                                           showDialog(
                                               context: context,
                                               builder: (BuildContext context) {
-                                                return ErrorView(
+                                                return const ErrorView(
                                                     errorMessage: "HATA");
                                               });
                                         } else {
@@ -208,8 +208,8 @@ class LoginScreen extends StatelessWidget {
                                       height: 70,
                                       decoration: BoxDecoration(
                                           color: themeBloc == ThemeMode.light
-                                              ? Color(0xffb8e6db)
-                                              : Color(0xff204c5c),
+                                              ? const Color(0xffb8e6db)
+                                              : const Color(0xff204c5c),
                                           borderRadius: const BorderRadius.all(
                                               Radius.circular(15))),
                                       child: Center(

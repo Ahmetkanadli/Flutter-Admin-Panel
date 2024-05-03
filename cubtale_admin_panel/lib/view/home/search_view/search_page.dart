@@ -5,7 +5,6 @@ import 'package:cubtale_admin_panel/view/home/search_view/search_bloc/search_blo
 import 'package:cubtale_admin_panel/view/home/search_view/search_bloc/search_states.dart';
 import 'package:cubtale_admin_panel/view/home/search_view/search_widget/search_widget.dart';
 import 'package:cubtale_admin_panel/view/home/widget/appBar_widget.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -37,7 +36,7 @@ class _SearchPageState extends State<SearchPage> {
         .size
         .height;
 
-    TextEditingController _controller = TextEditingController();
+    TextEditingController controller = TextEditingController();
 
     return BlocBuilder<ThemeBloc, ThemeMode>(
         builder: (context, state) {
@@ -49,7 +48,7 @@ class _SearchPageState extends State<SearchPage> {
               return Scaffold(
                 backgroundColor: themeBloc == ThemeMode.light
                     ? Colors.white
-                    : Color(0xff101c34),
+                    : const Color(0xff101c34),
                 body: Stack(
                   children: [
                     HomeAppBarWidget(context),
@@ -119,7 +118,7 @@ class _SearchPageState extends State<SearchPage> {
                                                 width: width < 855 ? 200 : width /
                                                     4,
                                                 child: TextField(
-                                                  controller: _controller,
+                                                  controller: controller,
                                                   onTap: () async {
                                                     if(widget.searchTitle == "Date"){
                                                         final getValue = await showDatePicker(
@@ -130,7 +129,7 @@ class _SearchPageState extends State<SearchPage> {
                                                             lastDate: DateTime(2090)
                                                         );
                                                         if (getValue != null) {
-                                                          _controller.text =
+                                                          controller.text =
                                                           '${getValue.day}-${getValue
                                                               .month}-${getValue
                                                               .year}';
@@ -141,16 +140,16 @@ class _SearchPageState extends State<SearchPage> {
                                                   decoration: InputDecoration(
                                                     filled: true,
                                                     fillColor: themeBloc ==
-                                                        ThemeMode.light ? Color(
-                                                        0xffb8e6db) : Color(
+                                                        ThemeMode.light ? const Color(
+                                                        0xffb8e6db) : const Color(
                                                         0xff204c5c),
                                                     border: OutlineInputBorder(
                                                         borderSide: BorderSide(
                                                           color: themeBloc ==
                                                               ThemeMode.light
-                                                              ? Color(
+                                                              ? const Color(
                                                               0xffb8e6db)
-                                                              : Color(
+                                                              : const Color(
                                                               0xff204c5c),
                                                         ),
                                                         borderRadius: const BorderRadius
@@ -161,9 +160,9 @@ class _SearchPageState extends State<SearchPage> {
                                                         borderSide: BorderSide(
                                                           color: themeBloc ==
                                                               ThemeMode.light
-                                                              ? Color(
+                                                              ? const Color(
                                                               0xffb8e6db)
-                                                              : Color(
+                                                              : const Color(
                                                               0xff204c5c),
                                                         ),
                                                         borderRadius: const BorderRadius
@@ -185,7 +184,7 @@ class _SearchPageState extends State<SearchPage> {
                                             ElevatedButton(
                                                 onPressed: () async {
                                                   await Search().userSearch(
-                                                      userInfo: _controller
+                                                      userInfo: controller
                                                           .text,
                                                       searchType:
                                                       widget.searchTitle ==
@@ -201,8 +200,8 @@ class _SearchPageState extends State<SearchPage> {
                                                 style: ButtonStyle(
                                                     backgroundColor: MaterialStateProperty
                                                         .all<Color>(themeBloc ==
-                                                        ThemeMode.light ? Color(
-                                                        0xffb8e6db) : Color(
+                                                        ThemeMode.light ? const Color(
+                                                        0xffb8e6db) : const Color(
                                                         0xff204c5c),),
                                                     shape: MaterialStateProperty
                                                         .all<

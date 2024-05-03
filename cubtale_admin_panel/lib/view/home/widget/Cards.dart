@@ -5,15 +5,14 @@ import 'package:google_fonts/google_fonts.dart';
 
 Widget Cards(String title, BuildContext context) {
   double width = MediaQuery.of(context).size.width;
-  double height = MediaQuery.of(context).size.height;
   return BlocBuilder<ThemeBloc, ThemeMode>(builder: (context, state) {
     return Container(
       width: width < 1350 ? 490 : width / 2.9,
       height: 250,
       decoration: BoxDecoration(
-          color: state == ThemeMode.light ? Colors.white : Color(0xff182c3c),
+          color: state == ThemeMode.light ? Colors.white : const Color(0xff182c3c),
           borderRadius: BorderRadius.circular(15),
-          border: Border.all(color: Color(0xffb8e6db), width: 2)),
+          border: Border.all(color: const Color(0xffb8e6db), width: 2)),
       child: Column(
         children: [
           Text(
@@ -37,14 +36,14 @@ Widget Cards(String title, BuildContext context) {
                       end: Alignment.bottomRight,
                       colors: [
                         Colors.white,
-                        Color(0xffb8e6db).withOpacity(0.6),
+                        const Color(0xffb8e6db).withOpacity(0.6),
                       ],
                     )
                   : LinearGradient(
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
                       colors: [
-                        Color(0xffb8e6db),
+                        const Color(0xffb8e6db),
                         Colors.white.withOpacity(0.9),
                       ],
                     ),

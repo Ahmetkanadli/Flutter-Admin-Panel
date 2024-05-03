@@ -21,9 +21,7 @@ class WidgetTree extends StatelessWidget {
     } else {
       return BlocBuilder<ThemeBloc,ThemeMode>(
         builder: (context,state) {
-          print("isDark : $isDark");
-          final themeBloc = context.read<ThemeBloc>().state;
-          print("context : ${themeBloc}");
+           context.read<ThemeBloc>().state;
           isDark == false ? context.read<ThemeBloc>().add(ThemeChanged(false)):
           context.read<ThemeBloc>().add(ThemeChanged(true));
           return const LoginScreen();
