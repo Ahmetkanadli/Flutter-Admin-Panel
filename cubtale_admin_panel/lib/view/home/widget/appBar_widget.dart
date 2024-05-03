@@ -6,6 +6,7 @@ import 'package:cubtale_admin_panel/view/home/widget/bloc/dropDown_events.dart';
 import 'package:cubtale_admin_panel/view/home/widget/bloc/dropDown_states.dart';
 import 'package:cubtale_admin_panel/view/login/bloc/login_bloc.dart';
 import 'package:cubtale_admin_panel/view/login/bloc/login_states.dart';
+import 'package:cubtale_admin_panel/view/login/login_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -36,9 +37,9 @@ Widget HomeAppBarWidget(BuildContext context) {
                   const Spacer(),
                   Container(
                     width: width < 1000 ?width/4.5 : 222,
-                    height: state.isPressed ? 200 : 100,
+                    height: state.isPressed ? 250 : 10,
                     decoration:  BoxDecoration(
-                      color: themeBloc == ThemeMode.light ? Colors.white :Color(0xff101c34),
+                      color: themeBloc == ThemeMode.light ? Color(0xffb8e6db) :Color(0xff204c5c),
                     ),
                   ) ,
                 ],
@@ -238,13 +239,10 @@ Widget DropDownMenu(BuildContext context){
   double width = MediaQuery.of(context).size.width;
   double height = MediaQuery.of(context).size.height;
 
-  String acc_name = '';
-  String role = '';
 
   var _user = Hive.box<Map<String,dynamic>>("user_information");
   List userList = _user.get(0)!.values.toList();
 
-  print(_user.get(0)!.values);
   return BlocBuilder<ThemeBloc,ThemeMode>(
     builder: (context,state) {
       final themeBloc = context.read<ThemeBloc>().state;
@@ -259,7 +257,7 @@ Widget DropDownMenu(BuildContext context){
 
                 child: Container(
                   width: width < 1000 ?width/4.5 : 222,
-                  height: height/4,
+                  height: height/2.9,
                   decoration: BoxDecoration(
                       color: themeBloc == ThemeMode.light ? Color(0xffb8e6db) : Color(0xff204c5c),
                     borderRadius: BorderRadius.only(
@@ -282,13 +280,58 @@ Widget DropDownMenu(BuildContext context){
                           "Name    :    ${userList[2]} ",
                         style: GoogleFonts.aBeeZee(
                           textStyle: TextStyle(
-                            color: Colors.black.withOpacity(0.5),
+                            color: themeBloc == ThemeMode.light ?Colors.black.withOpacity(0.5) : Colors.white,
                             fontSize: width < 600 ? 13 : 16,
                           )
                         ),
                       ),
-                      const SizedBox(height: 10,),
-                      Text("Role    :    ${userList[4]} ")
+                      const SizedBox(height: 5,),
+                      Text(
+                          "Role    :    ${userList[4]} ",
+                        style: GoogleFonts.aBeeZee(
+                            textStyle: TextStyle(
+                              color: themeBloc == ThemeMode.light ?Colors.black.withOpacity(0.5) : Colors.white,
+                              fontSize: width < 600 ? 13 : 16,
+                            )
+                        ),
+                      ),
+                      const SizedBox(height: 5,),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          ElevatedButton(
+                              onPressed: () {
+                                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> const LoginScreen()));
+                                _user.clear();
+                              },
+                              style: ButtonStyle(
+                                  backgroundColor: MaterialStateProperty.all<Color>(themeBloc == ThemeMode.light ? Colors.white : Colors.grey.shade200),
+                                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                      RoundedRectangleBorder(
+                                          borderRadius: const BorderRadius.only(
+                                            topLeft: Radius.circular(20),
+                                            bottomRight: Radius.circular(20),
+                                            bottomLeft: Radius.circular(20),
+                                          ),
+                                          side: BorderSide(
+                                              color: Colors.redAccent.withOpacity(0.5),
+                                              width: 3
+                                          )
+                                      )
+                                  )
+                              ),
+                              child: Text(
+                                "Logout",
+                                style:GoogleFonts.aBeeZee(
+                                    textStyle : const TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.red,
+                                      fontSize: 10
+                                    )
+                                ) ,
+                              )),
+                        ],
+                      )
                     ],
                   ),
                 ),

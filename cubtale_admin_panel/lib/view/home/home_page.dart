@@ -36,7 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         return ConstrainedBox(
                             constraints: BoxConstraints(
                                 minHeight: 80,
-                                maxHeight: state.isPressed ? height/3.5 : 100,
+                                maxHeight: state.isPressed ? 250 : 100,
                                 maxWidth: width,
                                 minWidth: width
                             ),
