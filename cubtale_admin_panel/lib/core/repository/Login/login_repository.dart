@@ -39,7 +39,6 @@ class LoginRepository implements ISearchRepository {
 
       if (generalFailure != null) return left(generalFailure);
       if(result.toString() == "{error_msg: Token verification failed, error_code: 1099}"){
-        print("girdi");
         return left(LoginRepositoryNotFoundFailure());
       }
       else {
