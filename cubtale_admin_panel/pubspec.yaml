@@ -44,6 +44,7 @@ dependencies:
   hive: ^2.2.3
   hive_flutter: ^1.1.0
   flutter_datetime_picker: ^1.5.1
+  liquid_pull_to_refresh: ^3.0.1
 
 
 dev_dependencies:

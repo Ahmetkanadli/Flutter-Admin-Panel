@@ -24,7 +24,7 @@ class WidgetTree extends StatelessWidget {
            context.read<ThemeBloc>().state;
           isDark == false ? context.read<ThemeBloc>().add(ThemeChanged(false)):
           context.read<ThemeBloc>().add(ThemeChanged(true));
-          return const LoginScreen();
+          return const HomeScreen();
         }
       );
     }

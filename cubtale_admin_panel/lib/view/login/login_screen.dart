@@ -195,13 +195,10 @@ class LoginScreen extends StatelessWidget {
                                                     errorMessage: "HATA");
                                               });
                                         } else {
-                                          return Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      const HomeScreen()));
+                                          return Navigator.of(context).pushNamed("home");
                                         }
                                       });
+
                                     },
                                     child: Container(
                                       width: 90,
