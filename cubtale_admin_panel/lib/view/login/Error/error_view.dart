@@ -83,7 +83,7 @@ class _ErrorViewState extends State<ErrorView>
                 ),
                 ElevatedButton(
                     onPressed: () {
-                      Navigator.pop(context);
+                      Navigator.of(context).pop();
                     },
                     style: ButtonStyle(
                         backgroundColor:
