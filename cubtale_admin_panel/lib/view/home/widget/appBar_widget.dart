@@ -308,11 +308,7 @@ Widget DropDownMenu(BuildContext context) {
                       children: [
                         ElevatedButton(
                             onPressed: () {
-                              Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                      const LoginScreen()));
+                              Navigator.pushReplacementNamed(context, "/login");
                               user.clear();
                             },
                             style: ButtonStyle(
