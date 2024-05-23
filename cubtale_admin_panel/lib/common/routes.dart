@@ -4,4 +4,6 @@ class AppRoutes{
 
   // sign in page
   static const HOME = "/home";
+  static const SEARCH = "/search";
+
 }

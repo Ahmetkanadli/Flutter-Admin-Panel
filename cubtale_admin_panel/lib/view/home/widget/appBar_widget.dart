@@ -48,7 +48,7 @@ Widget HomeAppBarWidget(BuildContext context) {
               AppBar(
                 shape: const RoundedRectangleBorder(
                     borderRadius:
-                        BorderRadius.only(bottomRight: Radius.circular(30))),
+                    BorderRadius.only(bottomRight: Radius.circular(30))),
                 toolbarHeight: 80,
                 elevation: 0,
                 backgroundColor: themeBloc == ThemeMode.light
@@ -65,8 +65,8 @@ Widget HomeAppBarWidget(BuildContext context) {
                         width: width < 550
                             ? 35
                             : width < 700
-                                ? 40
-                                : 60,
+                            ? 40
+                            : 60,
                         child: AspectRatio(
                             aspectRatio: 1 / 1,
                             child: Image.asset(
@@ -81,8 +81,8 @@ Widget HomeAppBarWidget(BuildContext context) {
                           width: width < 555
                               ? 80
                               : width < 680
-                                  ? 83
-                                  : 150,
+                              ? 83
+                              : 150,
                           child: AspectRatio(
                               aspectRatio: 113 / 540,
                               child: Image.asset(
@@ -95,13 +95,11 @@ Widget HomeAppBarWidget(BuildContext context) {
                     children: [
                       TextButton(
                           onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const SearchPage(
-                                          searchType: 'Search By Email',
-                                          searchTitle: 'Email',
-                                        )));
+
+                            context.read<DropDownBloc>().add(SearchTypeEvent('Search By Email'));
+                            context.read<DropDownBloc>().add(SearchTitleEvent('Email'));
+
+                            Navigator.of(context).pushNamed('/search');
                           },
                           child: Text(
                             "Search By Email",
@@ -113,21 +111,19 @@ Widget HomeAppBarWidget(BuildContext context) {
                                     fontSize: width < 600
                                         ? 10
                                         : width < 650
-                                            ? 12
-                                            : width < 800
-                                                ? 15
-                                                : 20)),
+                                        ? 12
+                                        : width < 800
+                                        ? 15
+                                        : 20)),
                           )),
                       Image.asset("assets/vertical divider.png"),
                       TextButton(
                           onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const SearchPage(
-                                          searchType: 'Search By ID',
-                                          searchTitle: 'ID',
-                                        )));
+
+                            context.read<DropDownBloc>().add(SearchTypeEvent('Search By ID'));
+                            context.read<DropDownBloc>().add(SearchTitleEvent('ID'));
+
+                            Navigator.of(context).pushNamed('/search');
                           },
                           child: Text(
                             "Search by ID",
@@ -139,21 +135,19 @@ Widget HomeAppBarWidget(BuildContext context) {
                                     fontSize: width < 600
                                         ? 10
                                         : width < 650
-                                            ? 12
-                                            : width < 800
-                                                ? 15
-                                                : 20)),
+                                        ? 12
+                                        : width < 800
+                                        ? 15
+                                        : 20)),
                           )),
                       Image.asset("assets/vertical divider.png"),
                       TextButton(
                           onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const SearchPage(
-                                          searchType: 'Search By Date',
-                                          searchTitle: 'Date',
-                                        )));
+
+                            context.read<DropDownBloc>().add(SearchTypeEvent('Search By Date'));
+                            context.read<DropDownBloc>().add(SearchTitleEvent('Date'));
+
+                            Navigator.of(context).pushNamed('/search');
                           },
                           child: Text(
                             "Search by Date",
@@ -165,10 +159,10 @@ Widget HomeAppBarWidget(BuildContext context) {
                                     fontSize: width < 600
                                         ? 10
                                         : width < 650
-                                            ? 12
-                                            : width < 800
-                                                ? 15
-                                                : 20)),
+                                        ? 12
+                                        : width < 800
+                                        ? 15
+                                        : 20)),
                           )),
                     ],
                   ),
@@ -208,34 +202,34 @@ Widget HomeAppBarWidget(BuildContext context) {
               Expanded(
                 child: BlocBuilder<ThemeBloc, ThemeMode>(
                     builder: (context, state) {
-                  final themeBloc = context.read<ThemeBloc>().state;
-                  return Container(
-                    height: 80,
-                    width: width,
-                    decoration: BoxDecoration(
-                      // AppBar ' ın Sol tarafına shape vermek için
-                      borderRadius: const BorderRadius.only(
-                        topLeft: Radius.circular(30),
-                        //topRight: Radius.circular(toolbarWidth * 0.2),
-                      ),
-                      color: themeBloc == ThemeMode.light
-                          ? Colors.white
-                          : const Color(0xff101c34),
-                    ),
-                    child: BlocBuilder<DropDownBloc, DropDownState>(
-                      builder: (context, state) {
-                        return Stack(
-                          //fit: StackFit.loose,
-                          children: [
-                            state.isPressed
-                                ? DropDownMenu(context)
-                                : const Center()
-                          ],
-                        );
-                      },
-                    ),
-                  );
-                }),
+                      final themeBloc = context.read<ThemeBloc>().state;
+                      return Container(
+                        height: 80,
+                        width: width,
+                        decoration: BoxDecoration(
+                          // AppBar ' ın Sol tarafına shape vermek için
+                          borderRadius: const BorderRadius.only(
+                            topLeft: Radius.circular(30),
+                            //topRight: Radius.circular(toolbarWidth * 0.2),
+                          ),
+                          color: themeBloc == ThemeMode.light
+                              ? Colors.white
+                              : const Color(0xff101c34),
+                        ),
+                        child: BlocBuilder<DropDownBloc, DropDownState>(
+                          builder: (context, state) {
+                            return Stack(
+                              //fit: StackFit.loose,
+                              children: [
+                                state.isPressed
+                                    ? DropDownMenu(context)
+                                    : const Center()
+                              ],
+                            );
+                          },
+                        ),
+                      );
+                    }),
               ),
             ],
           )
@@ -287,11 +281,11 @@ Widget DropDownMenu(BuildContext context) {
                       "Name    :    ${userList[2]} ",
                       style: GoogleFonts.aBeeZee(
                           textStyle: TextStyle(
-                        color: themeBloc == ThemeMode.light
-                            ? Colors.black.withOpacity(0.5)
-                            : Colors.white,
-                        fontSize: width < 600 ? 13 : 16,
-                      )),
+                            color: themeBloc == ThemeMode.light
+                                ? Colors.black.withOpacity(0.5)
+                                : Colors.white,
+                            fontSize: width < 600 ? 13 : 16,
+                          )),
                     ),
                     const SizedBox(
                       height: 5,
@@ -300,11 +294,11 @@ Widget DropDownMenu(BuildContext context) {
                       "Role    :    ${userList[4]} ",
                       style: GoogleFonts.aBeeZee(
                           textStyle: TextStyle(
-                        color: themeBloc == ThemeMode.light
-                            ? Colors.black.withOpacity(0.5)
-                            : Colors.white,
-                        fontSize: width < 600 ? 13 : 16,
-                      )),
+                            color: themeBloc == ThemeMode.light
+                                ? Colors.black.withOpacity(0.5)
+                                : Colors.white,
+                            fontSize: width < 600 ? 13 : 16,
+                          )),
                     ),
                     const SizedBox(
                       height: 5,
@@ -318,17 +312,17 @@ Widget DropDownMenu(BuildContext context) {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                          const LoginScreen()));
+                                      const LoginScreen()));
                               user.clear();
                             },
                             style: ButtonStyle(
                                 backgroundColor:
-                                    MaterialStateProperty.all<Color>(
-                                        themeBloc == ThemeMode.light
-                                            ? Colors.white
-                                            : Colors.grey.shade200),
+                                MaterialStateProperty.all<Color>(
+                                    themeBloc == ThemeMode.light
+                                        ? Colors.white
+                                        : Colors.grey.shade200),
                                 shape: MaterialStateProperty.all<
-                                        RoundedRectangleBorder>(
+                                    RoundedRectangleBorder>(
                                     RoundedRectangleBorder(
                                         borderRadius: const BorderRadius.only(
                                           topLeft: Radius.circular(20),

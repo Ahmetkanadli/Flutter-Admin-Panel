@@ -139,6 +139,7 @@ class LoginScreen extends StatelessWidget {
                                             .read<LoginBloc>()
                                             .add(PasswordEvent(value));
                                       },
+                                      obscureText: true,
                                       decoration: InputDecoration(
                                         filled: true,
                                         fillColor: themeBloc == ThemeMode.light
@@ -195,7 +196,7 @@ class LoginScreen extends StatelessWidget {
                                                     errorMessage: "HATA");
                                               });
                                         } else {
-                                          return Navigator.of(context).pushNamed("home");
+                                          return Navigator.of(context).pushNamed("/home");
                                         }
                                       });
 
